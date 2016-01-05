@@ -41,7 +41,7 @@ app.use((req, res) => {
             <!DOCTYPE html>
             <html>
               <head>
-                <title>Test</title>
+                <title>Reddit Wallpapers</title>
 
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 <link rel="stylesheet" href="/dist/bundle.min.css">
