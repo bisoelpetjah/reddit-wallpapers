@@ -1,0 +1,16 @@
+body, #react-view, .page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1 0 auto;
+  background-color: #eeeeee;
+}
+
+.hidden {
+  display: none !important;
+}
