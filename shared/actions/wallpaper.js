@@ -22,7 +22,7 @@ export function fetchWallpaperList(after) {
   return dispatch => {
     dispatch(request())
 
-    return fetch(`${BASE_URL}/.json${after ? '?after=' + after : ''}`)
+    return fetch(`${BASE_URL}/.json${after ? ('?after=' + after) : ''}`, {mode: 'no-cors'})
         .then(response => response.json())
         .then(json => {
           dispatch(receiveWallpaperList(json))
