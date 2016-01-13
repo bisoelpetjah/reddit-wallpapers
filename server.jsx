@@ -4,6 +4,7 @@ import favicon from 'serve-favicon'
 import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {match, RoutingContext} from 'react-router'
+import createLocation from 'history/lib/createLocation'
 import thunkMiddleware from 'redux-thunk'
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux';
@@ -22,9 +23,10 @@ app.use((req, res, next) => {
 })
 
 app.use((req, res) => {
+  const location = createLocation(req.url)
   const store = applyMiddleware(thunkMiddleware)(createStore)(reducers)
 
-  match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
+  match({routes, location: location}, (error, redirectLocation, renderProps) => {
     if (error) res.status(500).end('Internal server error.')
     if (!renderProps) res.status(404).end('Not Found.')
 
