@@ -3,8 +3,17 @@ import {connect} from 'react-redux'
 import Header from 'components/header'
 import Footer from 'components/footer'
 import Card from 'components/card'
+import {fetchWallpaperList} from 'actions'
 
 class Home extends React.Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
   render() {
     const styles = {
       main: {
@@ -28,12 +37,22 @@ class Home extends React.Component {
                 )
               })
             }
+            {this.props.isFetching ? 'Loading more' : ''}
           </div>
         </main>
         <Footer />
       </div>
     )
   }
+
+  handleScroll() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight)
+      this.props.dispatch(fetchWallpaperList(this.props.after))
+  }
 }
 
-export default connect(state => ({posts: state.wallpaper.posts}))(Home)
+export default connect(state => ({
+  isFetching: state.wallpaper.isFetching,
+  posts: state.wallpaper.posts,
+  after: state.wallpaper.after
+}))(Home)
