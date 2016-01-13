@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 import Paper from 'material-ui/lib/paper'
 
 export default class Card extends React.Component {
@@ -19,7 +20,9 @@ export default class Card extends React.Component {
 
     return (
       <Paper style={styles.paper}>
-        <img src={this.props.post.url} style={styles.image} />
+        <a href={this.props.post.url} target="blank">
+          <img src={this.props.post.url} style={styles.image} />
+        </a>
       </Paper>
     )
   }
