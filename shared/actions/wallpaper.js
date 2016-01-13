@@ -1,32 +1,32 @@
-const URL = 'https://reddit.com/r/wallpaper/.json'
+const BASE_URL = 'https://reddit.com/r/wallpaper'
 
-export const REQUEST_WALLPAPERS = 'REQUEST_WALLPAPERS'
+export const REQUEST_WALLPAPER_LIST = 'REQUEST_WALLPAPER_LIST'
 
-export function requestWallpapers(after) {
+export function requestWallpaperList(after) {
   return {
-    type: REQUEST_WALLPAPERS,
+    type: REQUEST_WALLPAPER_LIST,
     after
   }
 }
 
-export const RECEIVE_WALLPAPERS = 'RECEIVE_WALLPAPERS'
+export const RECEIVE_WALLPAPER_LIST = 'RECEIVE_WALLPAPER_LIST'
 
-export function receiveWallpapers(json) {
+export function receiveWallpaperList(json) {
   return {
-    type: RECEIVE_WALLPAPERS,
+    type: RECEIVE_WALLPAPER_LIST,
     posts: json.data.children.map(child => child.data),
     after: json.data.after
   }
 }
 
-export function fetchWallpapers(after) {
+export function fetchWallpaperList(after) {
   return dispatch => {
-    dispatch(requestWallpapers(after))
+    dispatch(requestWallpaperList(after))
 
-    return fetch(URL + (after ? `?after=${after}` : ''))
+    return fetch(`${BASE_URL}/.json${after ? '?after=' + after : ''}`)
         .then(response => response.json())
         .then(json => {
-          dispatch(receiveWallpapers(json))
+          dispatch(receiveWallpaperList(json))
         })
   }
 }

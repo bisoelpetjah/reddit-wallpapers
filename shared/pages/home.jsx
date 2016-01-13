@@ -4,26 +4,27 @@ import Header from 'components/header'
 import Footer from 'components/footer'
 import Card from 'components/card'
 
-const mainStyle = {
-  padding: '0 50px'
-}
-
-const gridStyle = {
-  margin: '0 auto',
-  textAlign: 'center'
-}
-
 class Home extends React.Component {
   render() {
+    const styles = {
+      main: {
+        padding: '0 50px'
+      },
+      grid: {
+        margin: '0 auto',
+        textAlign: 'center'
+      }
+    }
+
     return (
       <div className="page">
         <Header />
-        <main style={mainStyle}>
-          <div style={gridStyle}>
+        <main style={styles.main}>
+          <div style={styles.grid}>
             {
               this.props.posts.map(post => {
                 return (
-                  <Card key={post.name} post={post} />
+                  <Card key={post.id} post={post} />
                 )
               })
             }

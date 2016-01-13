@@ -4,26 +4,6 @@ import FontIcon from 'material-ui/lib/font-icon'
 import TextField from 'material-ui/lib/text-field'
 import Colors from 'material-ui/lib/styles/colors'
 
-const iconButtonStyle = {
-  float: 'right'
-}
-
-const fontIconStyle = {
-  lineHeight: '48px'
-}
-
-const textFieldInputStyle = {
-  color: Colors.white
-}
-
-const textFieldUnderlineStyle = {
-  borderColor: Colors.transparent
-}
-
-const textFieldUnderlineFocusStyle = {
-  borderColor: Colors.white
-}
-
 export default class SearchBar extends React.Component {
   constructor() {
     super()
@@ -44,12 +24,30 @@ export default class SearchBar extends React.Component {
   }
 
   render() {
+    const styles = {
+      iconButton: {
+        float: 'right'
+      },
+      fontIcon: {
+        lineHeight: '48px'
+      },
+      textFieldInput: {
+        color: Colors.white
+      },
+      textFieldUnderline: {
+        borderColor: Colors.transparent
+      },
+      textFieldUnderlineFocus: {
+        borderColor: Colors.white
+      }
+    }
+
     return (
       <div>
-        <IconButton style={iconButtonStyle} onClick={this.showSearch.bind(this)}>
-          <FontIcon className="material-icons" color={Colors.white} style={fontIconStyle}>{this.state.searchActive ? 'clear' : 'search'}</FontIcon>
+        <IconButton style={styles.iconButton} onClick={this.showSearch.bind(this)}>
+          <FontIcon className="material-icons" color={Colors.white} style={styles.fontIcon}>{this.state.searchActive ? 'clear' : 'search'}</FontIcon>
         </IconButton>
-        <TextField className={this.state.searchActive ? '' : 'hidden'} ref="input" hint="Search" inputStyle={textFieldInputStyle} underlineStyle={textFieldUnderlineStyle} underlineFocusStyle={textFieldUnderlineFocusStyle} onBlur={this.hideSearch.bind(this)}/>
+        <TextField className={this.state.searchActive ? '' : 'hidden'} ref="input" hint="Search" inputStyle={styles.textFieldInput} underlineStyle={styles.textFieldUnderline} underlineFocusStyle={styles.textFieldUnderlineFocus} onBlur={this.hideSearch.bind(this)}/>
       </div>
     )
   }

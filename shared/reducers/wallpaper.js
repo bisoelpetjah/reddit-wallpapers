@@ -1,15 +1,15 @@
-import {REQUEST_WALLPAPERS, RECEIVE_WALLPAPERS} from 'actions'
-import {combineReducers} from 'redux'
+import {REQUEST_WALLPAPER_LIST, RECEIVE_WALLPAPER_LIST} from 'actions'
 
 export default function wallpaperReducer(state = {
   isFetching: false,
   posts: [],
-  after: null
+  after: null,
+  currentPost: null
 }, action) {
   switch (action.type) {
-    case REQUEST_WALLPAPERS:
+    case REQUEST_WALLPAPER_LIST:
       return Object.assign({}, state, {isFetching: true})
-    case RECEIVE_WALLPAPERS:
+    case RECEIVE_WALLPAPER_LIST:
       return Object.assign({}, state, {
         isFetching: false,
         posts: action.posts,

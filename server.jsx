@@ -10,7 +10,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux';
 import routes from 'routes'
 import reducers from 'reducers'
-import {fetchWallpapers} from 'actions'
+import {fetchWallpaperList} from 'actions'
 
 const app = express()
 
@@ -30,7 +30,7 @@ app.use((req, res) => {
     if (error) res.status(500).end('Internal server error.')
     if (!renderProps) res.status(404).end('Not Found.')
 
-    store.dispatch(fetchWallpapers(null))
+    store.dispatch(fetchWallpaperList(null))
         .then(() => {
           const componentHtml = renderToString(
             <Provider store={store}>
@@ -44,6 +44,8 @@ app.use((req, res) => {
             <html>
               <head>
                 <title>Reddit Wallpapers</title>
+
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 <link rel="stylesheet" href="/dist/bundle.min.css">
